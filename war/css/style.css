@@ -1,0 +1,15 @@
+
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+#content { height: 100%; border:0; }
+
+#tweets li {
+	margin: 10px;
+	cursor:pointer;
+}
