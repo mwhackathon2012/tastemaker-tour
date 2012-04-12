@@ -13,11 +13,31 @@ function parseTweets(data)
   // clear old ones
   $('#tweets').html('');
 
+  var context = "";
+  
   // add new ones  
   $.each(data, function(key, val) {
+	context += " " + val.text.replace(/[^a-z0-9-_.;:]/gim,' ');
     $('<li/>', { id: val.id, html: val.text.replace(/[^a-z0-9-_.;:]/gim,' ') }).appendTo('#tweets'); 
   });
+  
+  // now load images
+  console.log("context: ", context);
+  var termextractorurl = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20search.termextract%20where%20context%3D%22" + context + "%22%20limit%2010&format=json";
+  // or http://www.alchemyapi.com/api/demo.html
+  $.ajax( {url: termextractorurl, dataType: "jsonp", success: loadImages });
 }
+
+function loadImages(data)
+{
+	console.log("received terms: ", data);
+	
+	var terms = data.query.results.Result;
+	console.log(terms);
+}
+
+
+
 
 $('#tweets li').live('click', openTweet);
 
