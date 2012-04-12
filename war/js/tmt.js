@@ -18,7 +18,7 @@ function parseTweets(data)
   // add new ones  
   $.each(data, function(key, val) {
 	context += " " + val.text.replace(/[^a-z0-9-_.;:]/gim,' ');
-    $('<li/>', { id: val.id, html: val.text.replace(/[^a-z0-9-_.;:]/gim,' ') }).appendTo('#tweets'); 
+    $('<li/>', { id: val.id, html: val.text.replace(/[^a-z0-9-_.;:\/]/gim,' ') }).appendTo('#tweets'); 
   });
   
   // now load images
