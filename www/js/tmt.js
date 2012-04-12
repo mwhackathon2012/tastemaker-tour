@@ -1,6 +1,4 @@
-
-//var twitterqueryurl = "http://search.twitter.com/search.json?q=victoria%20albert%20http";
-var twitterqueryurl = "https://api.twitter.com/1/lists/statuses.json?slug=top-10-influencers-uk&owner_screen_name=mwhackathon&per_page=10&page=1&include_entities=true";
+var twitterqueryurl = "http://search.twitter.com/search.json?q=instagr.am+art+museum+OR+gallery";
 
 $(document).ready(function() {
 	$.ajax( {url: twitterqueryurl, dataType: "jsonp", success: parseTweets });
@@ -16,8 +14,8 @@ function parseTweets(data)
   var context = "";
   
   // add new ones  
-  $.each(data, function(key, val) {
-	context += " " + val.text.replace(/[^a-z0-9-_.;:]/gim,' ');
+  $.each(data.results, function(key, val) {
+    context += " " + val.text.replace(/[^a-z0-9-_.;:]/gim,' ');
     $('<li/>', { id: val.id, html: val.text.replace(/[^a-z0-9-_.;:\/]/gim,' ') }).appendTo('#tweets');
   });
   
